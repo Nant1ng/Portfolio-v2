@@ -1,6 +1,6 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
 import { fetchHero } from "@/lib/fetchHero";
+import Hero from "@/components/Hero";
 
 export default function Home({ heroData }) {
   return (
@@ -11,11 +11,10 @@ export default function Home({ heroData }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <h1>{heroData.role} </h1>
-        {heroData.greeting.map((heroData, index) => (
-            <h3 key={index}>{heroData}</h3>
-          ))}
+      <main className="container">
+        <section id="hero">
+          <Hero data={heroData}/>
+        </section>
       </main>
     </>
   );

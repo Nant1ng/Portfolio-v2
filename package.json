@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build:css": "sass assets/css/main.scss assets/css/main.css --style expanded",
+    "minify:css": "sass assets/css/main.scss assets/css/main.min.css --style compressed",
+    "build": "next build && npm run build:css && npm run minify:css",
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -13,6 +15,8 @@
     "eslint-config-next": "14.2.3",
     "next": "^13.2.4",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "react-simple-typewriter": "^5.0.1",
+    "sass": "^1.77.1"
   }
 }
