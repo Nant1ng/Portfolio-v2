@@ -12,12 +12,18 @@ const Hero = ({ data }) => {
   });
 
   return (
-    <div id="hero">
-      <h1 className="">{data.role}</h1>
-      <h2>
-        <span>
-            {text} <Cursor cursorColor="white" />
-        </span>
+    <div className="container">
+      <Image
+        className="hero-image"
+        src="https://i.postimg.cc/yNKc4Vfg/drawn-picture.jpg"
+        width={100}
+        height={100}
+        priority
+      />
+      <h1 className="role">{data.role}</h1>
+      <h2 className="typewriter">
+        {text}
+        <Cursor cursorColor="white" />
       </h2>
       <div className="link-buttons">
         <Link href="#about">

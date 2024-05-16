@@ -1,22 +1,68 @@
 #hero {
-  .link-buttons {
-    padding-top: 1.25rem;
+  .container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
 
-    .link-button {
-      padding: 0.5rem 1.5rem;
-      border: 1px solid #242424;
+    .hero-image {
+      position: relative;
       border-radius: 9999px;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      color: #6b7280;
-      transition: all 0.2s;
-      background: none;
-      cursor: pointer;
+      height: 8rem;
+      width: 8rem; 
+      margin-left: auto;
+      margin-right: auto;
+      object-fit: cover;
+    }
 
-      &:hover {
-        border-color: rgba(107, 10, 127, 0.4);
-        color: rgba(107, 10, 127, 0.4);
+    .role {
+      font-size: 1rem;
+      line-height: 1.25rem;
+      text-transform: uppercase;
+      color: $secondary;
+      padding-bottom: 0.5rem;
+      letter-spacing: 10px;
+    }
+
+    .typewriter {
+      font-size: 1.5rem;
+      line-height: 1;
+      font-weight: 600;
+      padding: 0 2.5rem;
+
+      @include md {
+        font-size: 3rem;
+      }
+    }
+
+    .link-buttons {
+      padding-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      justify-content:center;
+      
+      .link-button {
+        padding: 0.5rem 1.5rem;
+        width: 140px;
+        border: 1px solid $secondary;
+        border-radius: 9999px;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        color: $secondary;
+        transition: all 0.2s;
+        background: none;
+        cursor: pointer;
+  
+        &:hover {
+          border-color: $primary;
+          color: $primary;
+        }
       }
     }
   }
