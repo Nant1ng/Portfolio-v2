@@ -17,7 +17,7 @@ export default function Home({ socialData, heroData }) {
       </Head>
       <main className="container">
         <Header socials={socialData}/>
-        <section id="hero">
+        <section id="hero" aria-label="Hero section">
           <Hero data={heroData}/>
         </section>
       </main>

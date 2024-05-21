@@ -19,6 +19,7 @@ const Hero = ({ data }) => {
         width={100}
         height={100}
         priority
+        alt="Drawn picture representing me"
       />
       <h1 className="role">{data.role}</h1>
       <h2 className="typewriter">
@@ -41,10 +42,8 @@ const Hero = ({ data }) => {
             Skills
           </button>
         </Link>
-        <Link href="#projects">
-          <button className="link-button" aria-label="See my projects">
-            Projects
-          </button>
+        <Link href="#projects" className="link-button" aria-label="See my projects">
+          Projects
         </Link>
       </div>
     </div>
