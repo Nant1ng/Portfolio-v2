@@ -42,8 +42,10 @@ const Hero = ({ data }) => {
             Skills
           </button>
         </Link>
-        <Link href="#projects" className="link-button" aria-label="See my projects">
-          Projects
+        <Link href="#projects">
+          <button className="link-button" aria-label="See my projects">
+            Projects
+          </button>
         </Link>
       </div>
     </div>
