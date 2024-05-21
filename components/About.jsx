@@ -2,7 +2,6 @@ import Image from "next/image";
 import React from "react";
 
 const About = ({ data }) => {
-  console.log(data);
   return (
     <div className="container">
       <h3>About</h3>
