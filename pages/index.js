@@ -3,12 +3,19 @@ import Head from "next/head";
 import { fetchHero } from "@/lib/fetchHero";
 import { fetchSocial } from "@/lib/fetchSocial";
 import { fetchAbout } from "@/lib/fetchAbout";
+import { fetchExperience } from "@/lib/fetchExperience";
 
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Experience from "@/components/Experience";
 
-export default function Home({ socialData, heroData, aboutData }) {
+export default function Home({
+  socialData,
+  heroData,
+  aboutData,
+  experienceData,
+}) {
   return (
     <>
       <Head>
@@ -25,6 +32,9 @@ export default function Home({ socialData, heroData, aboutData }) {
         <section id="about" className="snap-center">
           <About data={aboutData} />
         </section>
+        <section id="experience" className="snap-center">
+          <Experience data={experienceData} />
+        </section>
       </main>
     </>
   );
@@ -34,12 +44,14 @@ export const getStaticProps = async () => {
   const socialData = await fetchSocial();
   const heroData = await fetchHero();
   const aboutData = await fetchAbout();
+  const experienceData = await fetchExperience();
 
   return {
     props: {
       socialData,
       heroData,
       aboutData,
+      experienceData,
     },
   };
 };
