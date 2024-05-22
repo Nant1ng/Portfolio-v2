@@ -5,20 +5,25 @@ import { fetchSocial } from "@/lib/fetchSocial";
 import { fetchAbout } from "@/lib/fetchAbout";
 import { fetchExperience } from "@/lib/fetchExperience";
 import { fetchSkill } from "@/lib/fetchSkill";
+import { fetchContact } from "@/lib/fetchContact";
+import { fetchWeather } from "@/lib/fetchWether";
 
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Skill from "@/components/Skill";
-import { fetchContact } from "@/lib/fetchContact";
+import Contact from "@/components/Contact";
+
 
 export default function Home({
   socialData,
   heroData,
   aboutData,
   experienceData,
-  skillData
+  skillData,
+  contactData,
+  weatherData
 }) {
   return (
     <>
@@ -43,7 +48,7 @@ export default function Home({
           <Skill data={skillData} />
         </section>
         <section id="contact" className="snap-center">
-
+          <Contact data={contactData} weather={weatherData}/>
         </section>
       </main>
     </>
@@ -57,6 +62,8 @@ export const getStaticProps = async () => {
   const experienceData = await fetchExperience();
   const skillData = await fetchSkill();
   const contactData = await fetchContact();
+  const weatherData = await fetchWeather();
+
 
   return {
     props: {
@@ -65,7 +72,8 @@ export const getStaticProps = async () => {
       aboutData,
       experienceData,
       skillData,
-      contactData
+      contactData,
+      weatherData
     },
   };
 };
