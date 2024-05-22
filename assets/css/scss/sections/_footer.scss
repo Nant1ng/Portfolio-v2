@@ -1,0 +1,11 @@
+footer {
+  position: sticky;
+  bottom: 1.25rem;
+  width: 100vw;
+
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

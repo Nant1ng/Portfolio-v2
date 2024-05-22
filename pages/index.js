@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 import { fetchHero } from "@/lib/fetchHero";
 import { fetchSocial } from "@/lib/fetchSocial";
@@ -15,6 +16,7 @@ import Experience from "@/components/Experience";
 import Skill from "@/components/Skill";
 import Contact from "@/components/Contact";
 
+import { ArrowUpCircleIcon } from "@heroicons/react/24/solid";
 
 export default function Home({
   socialData,
@@ -23,7 +25,7 @@ export default function Home({
   experienceData,
   skillData,
   contactData,
-  weatherData
+  weatherData,
 }) {
   return (
     <>
@@ -33,24 +35,33 @@ export default function Home({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="container">
-        <Header socials={socialData} />
-        <section id="hero" className="snap-start" aria-label="Hero section">
-          <Hero data={heroData} />
-        </section>
-        <section id="about" className="snap-start">
-          <About data={aboutData} />
-        </section>
-        <section id="experience" className="snap-center">
-          <Experience data={experienceData} />
-        </section>
-        <section id="skills" className="snap-center">
-          <Skill data={skillData} />
-        </section>
-        <section id="contact" className="snap-center">
-          <Contact data={contactData} weather={weatherData}/>
-        </section>
-      </main>
+      <div className="container">
+        <main>
+          <Header socials={socialData} />
+          <section id="hero" className="snap-start" aria-label="Hero section">
+            <Hero data={heroData} />
+          </section>
+          <section id="about" className="snap-start">
+            <About data={aboutData} />
+          </section>
+          <section id="experience" className="snap-center">
+            <Experience data={experienceData} />
+          </section>
+          <section id="skills" className="snap-center">
+            <Skill data={skillData} />
+          </section>
+          <section id="contact" className="snap-start">
+            <Contact data={contactData} weather={weatherData} />
+          </section>
+        </main>
+        <Link href="#hero" aria-label="Return to hompage section">
+          <footer>
+            <div className="icon-container">
+              <ArrowUpCircleIcon className="arrow-icon" />
+            </div>
+          </footer>
+        </Link>
+      </div>
     </>
   );
 }
@@ -64,7 +75,6 @@ export const getStaticProps = async () => {
   const contactData = await fetchContact();
   const weatherData = await fetchWeather();
 
-
   return {
     props: {
       socialData,
@@ -73,7 +83,7 @@ export const getStaticProps = async () => {
       experienceData,
       skillData,
       contactData,
-      weatherData
+      weatherData,
     },
   };
 };
