@@ -4,17 +4,21 @@ import { fetchHero } from "@/lib/fetchHero";
 import { fetchSocial } from "@/lib/fetchSocial";
 import { fetchAbout } from "@/lib/fetchAbout";
 import { fetchExperience } from "@/lib/fetchExperience";
+import { fetchSkill } from "@/lib/fetchSkill";
 
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
+import Skill from "@/components/Skill";
+import { fetchContact } from "@/lib/fetchContact";
 
 export default function Home({
   socialData,
   heroData,
   aboutData,
   experienceData,
+  skillData
 }) {
   return (
     <>
@@ -29,11 +33,17 @@ export default function Home({
         <section id="hero" className="snap-start" aria-label="Hero section">
           <Hero data={heroData} />
         </section>
-        <section id="about" className="snap-center">
+        <section id="about" className="snap-start">
           <About data={aboutData} />
         </section>
         <section id="experience" className="snap-center">
           <Experience data={experienceData} />
+        </section>
+        <section id="skills" className="snap-center">
+          <Skill data={skillData} />
+        </section>
+        <section id="contact" className="snap-center">
+
         </section>
       </main>
     </>
@@ -45,6 +55,8 @@ export const getStaticProps = async () => {
   const heroData = await fetchHero();
   const aboutData = await fetchAbout();
   const experienceData = await fetchExperience();
+  const skillData = await fetchSkill();
+  const contactData = await fetchContact();
 
   return {
     props: {
@@ -52,6 +64,8 @@ export const getStaticProps = async () => {
       heroData,
       aboutData,
       experienceData,
+      skillData,
+      contactData
     },
   };
 };
