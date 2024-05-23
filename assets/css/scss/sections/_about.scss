@@ -8,7 +8,7 @@
     max-width: 80rem;
     padding-left: 2.5rem;
     padding-right: 2.5rem;
-    justify-content: space-evenly;
+    gap: 3rem;
     margin: 0 auto;
     align-items: center;
     overflow: hidden;
@@ -17,6 +17,7 @@
       text-align: left;
       flex-direction: row;
       gap: 5rem;
+      justify-content: space-evenly;
     }
 
     h3 {
@@ -34,22 +35,23 @@
     }
 
     .about-image {
-      margin-bottom: -5rem;
       flex-shrink: 0;
       width: 7rem;
       height: 7rem;
       border-radius: 9999px;
       object-fit: cover;
+      margin-top: 5rem;
 
       @include md {
-        margin-bottom: 0;
-        width: 20rem;
-        height: 20rem;
+        margin-top: 6rem;
+        width: 10rem;
+        height: 10rem;
       }
 
       @include xl {
         width: 25rem;
         height: 25rem;
+        margin-top: 0;
       }
     }
 
@@ -59,15 +61,19 @@
       gap: 1rem;
       padding: 0;
 
-      @include md {
+      @include lg {
         gap: 2.5rem;
         padding: 0 2.5rem;
       }
 
       h4 {
-        font-size: 1.5rem;
+        font-size: 1rem;
 
         @include md {
+          font-size: 2rem;
+        }
+
+        @include lg {
           font-size: 3rem;
         }
 
@@ -80,11 +86,21 @@
       ul {
         list-style-type: none;
         padding: 0;
+        text-align: left;
 
         li {
           position: relative;
           margin-bottom: 1rem;
           padding-left: 1rem;
+          font-size: 0.7rem;
+
+          @include md {
+            font-size: 1rem;
+          }
+
+          @include lg {
+            font-size: 1.1rem;
+          }
 
           &::before {
             content: "";
@@ -100,6 +116,13 @@
       }
 
       .btn-container {
+        display: flex;
+        justify-content: center;
+
+        @include lg {
+          justify-content: left;
+        }
+
         .submit-btn {
           display: flex;
           justify-content: center;
@@ -108,7 +131,6 @@
           gap: 0.5rem;
           width: 13rem;
           height: 3rem;
-          margin-top: 2rem;
           padding: 0.5rem 1.75rem;
           border-radius: 6px;
           font-size: 1rem;
@@ -116,14 +138,28 @@
           color: white;
           cursor: pointer;
 
+          @include md {
+            position: absolute;
+            right: 1.75rem;
+            top: 29.37rem;
+            margin-top: 2rem;
+          }
+
+          @include lg {
+            position: static;
+            top: none;
+            right: none;
+            
+          }
+
           &:hover {
-              transition: 0.2s;
-              background-color: $primary;
+            transition: 0.2s;
+            background-color: $primary;
           }
 
           .icon {
-           color: white;
-           width: 2rem;
+            color: white;
+            width: 2rem;
           }
         }
       }
