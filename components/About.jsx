@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";
 
 const About = ({ data }) => {
   return (
@@ -17,10 +17,15 @@ const About = ({ data }) => {
           Here's a <span>little</span> background.
         </h4>
         <ul>
-        {data.aboutText.map((text, idx) => (
-          <li key={idx}>{text}</li>
-        ))}
+          {data.aboutText.map((text, idx) => (
+            <li key={idx}>{text}</li>
+          ))}
         </ul>
+        <div className="btn-container">
+          <button className="submit-btn">
+            Resumé <ArrowRightCircleIcon className="arrow-icon icon" />
+          </button>
+        </div>
       </div>
     </div>
   );
