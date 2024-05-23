@@ -10,8 +10,8 @@ const Skill = ({ data }) => {
             <Image
               key={idx}
               src={skill.imageUrl}
-              width={100}
-              height={100}
+              width={1000}
+              height={1000}
               alt={skill.skill}
               className="skill"
             />
