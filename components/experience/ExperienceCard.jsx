@@ -30,7 +30,7 @@ const ExperienceCard = ({ experienceData }) => {
             </span>
           </h5>
         </div>
-        <Image src={imageUrl} width={50} height={50} className="card-image" />
+        <Image src={imageUrl} width={50} height={50} alt={title} className="card-image" />
       </div>
       <div className="card-content">
         <div className="tags-container">

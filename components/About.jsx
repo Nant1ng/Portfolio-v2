@@ -10,6 +10,7 @@ const About = ({ data }) => {
         width={1000}
         height={1000}
         className="about-image"
+        alt="Picture of me in london."
         unoptimized
       />
       <div className="text-container">
