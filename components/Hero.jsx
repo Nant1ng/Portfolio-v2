@@ -16,8 +16,8 @@ const Hero = ({ data }) => {
       <Image
         className="hero-image"
         src="https://i.postimg.cc/yNKc4Vfg/drawn-picture.jpg"
-        width={100}
-        height={100}
+        width={1000}
+        height={1000}
         priority
         alt="Drawn picture representing me"
       />
