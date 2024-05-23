@@ -1,0 +1,37 @@
+#header {
+  position: sticky;
+  top: 0;
+  padding: 1rem 1.25rem 0 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 80rem;
+  margin: 0 auto;
+  z-index: 10;
+
+  nav {
+    display: flex;
+    align-items: center;
+
+    .social-icon {
+      &:hover {
+        color: $primary;
+      }
+    }
+
+    .contact-btn {
+      display: none;
+
+      @include xl {
+        display: block;
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .hover {
+    &:hover {
+      color: $primary;
+    }
+  }
+}
