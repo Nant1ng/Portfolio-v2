@@ -23,7 +23,7 @@ const About = ({ data }) => {
           ))}
         </ul>
         <div className="btn-container">
-          <button className="submit-btn">
+          <button className="submit-btn" aria-label="Go to Reumé page">
             Resumé <ArrowRightCircleIcon className="arrow-icon icon" />
           </button>
         </div>
