@@ -3,8 +3,11 @@ import Link from "next/link";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 
 const Hero = ({ data }) => {
+  const heroData = data[0];
+  const { greeting, role } = heroData;
+
   const [text] = useTypewriter({
-    words: data.greeting,
+    words: greeting,
     loop: true,
     delaySpeed: 2000,
     typeSpeed: 50,
@@ -21,7 +24,7 @@ const Hero = ({ data }) => {
         priority
         alt="Drawn picture representing me"
       />
-      <h1 className="role">{data.role}</h1>
+      <h1 className="role">{role}</h1>
       <h2 className="typewriter">
         {text}
         <Cursor cursorColor="white" />
