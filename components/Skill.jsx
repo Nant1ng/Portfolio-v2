@@ -5,14 +5,13 @@ const Skill = ({ data }) => {
     <div className="container">
       <h3>Skills</h3>
       <div className="skills-grid">
-        {data.map((skill, idx) => (
-          <div key={idx} className="hover-container">
+        {data.map((skill) => (
+          <div key={skill.id} className="hover-container">
             <Image
-              key={idx}
               src={skill.imageUrl}
               width={1000}
               height={1000}
-              alt={skill.skill}
+              alt={skill.skillName}
               className="skill"
             />
             <div className="hover-label">{skill.skill}</div>
