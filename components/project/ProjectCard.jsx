@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ProjectCard = ({ projectData }) => {
-  const { description, imageUrl, link, tags, title } = projectData;
+  const { description, imageUrl, link, github, tags, title } = projectData;
+
   return (
     <article className="card">
       <div className="card-header">
@@ -26,14 +27,22 @@ const ProjectCard = ({ projectData }) => {
             height={150}
             alt={title}
             className="card-image"
+            priority
           />
         </Link>
         <p className="description">{description}</p>
-        <Link href={link} target="_blank">
-          <button type="submit" className="submit-btn">
-            Go to Project
-          </button>
-        </Link>
+        <div className="btn-container">
+          <Link href={github} target="_blank">
+            <button type="submit" className="submit-btn">
+              Go to Github
+            </button>
+          </Link>
+          <Link href={link} target="_blank">
+            <button type="submit" className="submit-btn">
+              Go to Project
+            </button>
+          </Link>
+        </div>
       </div>
     </article>
   );
