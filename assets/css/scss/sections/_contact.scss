@@ -48,13 +48,25 @@
       .location {
         margin-top: 1rem;
 
-        .uppercase {
-          font-size: 1.125rem;
-        }
+        h4 {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
 
-        .underline {
-          text-decoration: underline;
-          text-decoration-color: $primary;
+          .uppercase {
+            font-size: 1.125rem;
+          }
+
+          .underline {
+            text-decoration: underline;
+            text-decoration-color: $primary;
+          }
+
+          .weather-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            color: $primary;
+          }
         }
       }
 
@@ -91,7 +103,7 @@
         .form-group {
           display: flex;
           flex-direction: column;
-          margin-top: .25rem;
+          margin-top: 0.25rem;
 
           label {
             margin-bottom: 0.25rem;
@@ -142,8 +154,8 @@
             cursor: pointer;
 
             &:hover {
-                transition: 0.2s;
-                background-color: $primary;
+              transition: 0.2s;
+              background-color: $primary;
             }
           }
         }
