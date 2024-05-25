@@ -16,6 +16,7 @@ import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Skill from "@/components/Skill";
 import Project from "@/components/Project";
+import Reference from "@/components/Reference";
 import Contact from "@/components/Contact";
 
 import { ArrowUpCircleIcon } from "@heroicons/react/24/solid";
@@ -54,10 +55,13 @@ export default function Home({
             <Skill data={skillData} />
           </section>
           <section id="projects" className="snap-center">
-            <Project data={projectData}/>
+            <Project data={projectData} />
+          </section>
+          <section id="reference" className="snap-center">
+            <Reference />
           </section>
           <section id="contact" className="snap-start">
-            <Contact data={contactData} weather={weatherData}/>
+            <Contact data={contactData} weather={weatherData} />
           </section>
         </main>
         <Link href="#hero" aria-label="Return to hompage section">

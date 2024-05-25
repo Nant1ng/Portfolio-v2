@@ -38,7 +38,6 @@ const Contact = ({ data, weather }) => {
     }
   };
 
-  console.log(weather)
   return (
     <div className="container">
       <h3>Contact</h3>
