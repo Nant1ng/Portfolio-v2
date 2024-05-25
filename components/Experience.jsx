@@ -26,7 +26,7 @@ const Experience = ({ data }) => {
         <div className="slider">
           {data.map((experience, idx) => (
             <div
-              key={idx}
+              key={experience.id}
               className={`slide ${idx === currentCard ? "active" : ""}`}
               style={{ display: idx === currentCard ? "flex" : "none" }}
             >
