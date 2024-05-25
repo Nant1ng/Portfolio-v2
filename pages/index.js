@@ -6,6 +6,7 @@ import { fetchSocial } from "@/lib/fetchSocial";
 import { fetchAbout } from "@/lib/fetchAbout";
 import { fetchExperience } from "@/lib/fetchExperience";
 import { fetchSkill } from "@/lib/fetchSkill";
+import { fetchProject } from "@/lib/fetchProject";
 import { fetchContact } from "@/lib/fetchContact";
 import { fetchWeather } from "@/lib/fetchWether";
 
@@ -14,6 +15,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Skill from "@/components/Skill";
+import Project from "@/components/Project";
 import Contact from "@/components/Contact";
 
 import { ArrowUpCircleIcon } from "@heroicons/react/24/solid";
@@ -24,6 +26,7 @@ export default function Home({
   aboutData,
   experienceData,
   skillData,
+  projectData,
   contactData,
   weatherData,
 }) {
@@ -50,8 +53,11 @@ export default function Home({
           <section id="skills" className="snap-center">
             <Skill data={skillData} />
           </section>
+          <section id="projects" className="snap-center">
+            <Project data={projectData}/>
+          </section>
           <section id="contact" className="snap-start">
-            <Contact data={contactData} weather={weatherData} />
+            <Contact data={contactData} weather={weatherData}/>
           </section>
         </main>
         <Link href="#hero" aria-label="Return to hompage section">
@@ -72,6 +78,7 @@ export const getStaticProps = async () => {
   const aboutData = await fetchAbout();
   const experienceData = await fetchExperience();
   const skillData = await fetchSkill();
+  const projectData = await fetchProject();
   const contactData = await fetchContact();
   const weatherData = await fetchWeather();
 
@@ -82,6 +89,7 @@ export const getStaticProps = async () => {
       aboutData,
       experienceData,
       skillData,
+      projectData,
       contactData,
       weatherData,
     },

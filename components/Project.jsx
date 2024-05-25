@@ -15,7 +15,7 @@ const Project = ({ data }) => {
   const handlePrev = () => {
     setCurrentCard((prevCard) => (prevCard - 1 + data.length) % data.length);
   };
-  console.log(data);
+
   return (
     <div className="container">
       <h3>Project</h3>
