@@ -3,16 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build:css": "sass assets/css/main.scss assets/css/main.css --style expanded",
+    "minify:css": "sass assets/css/main.scss assets/css/main.min.css --style compressed",
+    "build": "next build && npm run build:css && npm run minify:css",
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.1.3",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.3",
     "next": "^13.2.4",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "react-simple-typewriter": "^5.0.1",
+    "react-social-icons": "^6.16.0",
+    "sass": "^1.77.1"
   }
 }

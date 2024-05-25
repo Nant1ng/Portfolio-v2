@@ -1,0 +1,165 @@
+#contact {
+  .container {
+    height: 100vh;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    max-width: 80rem;
+    padding: 2.5rem;
+    justify-content: space-evenly;
+    margin: auto;
+    align-items: center;
+    overflow: hidden;
+
+    @include md {
+      flex-direction: row;
+      text-align: left;
+    }
+
+    h3 {
+      position: absolute;
+      top: 6rem;
+      text-transform: uppercase;
+      letter-spacing: 1rem;
+      color: $secondary;
+      font-size: 1.5rem;
+    }
+
+    .flex-container {
+      display: flex;
+      gap: 10rem;
+      margin-top: 5rem;
+
+      .contact-heading {
+        width: 525px;
+
+        h4 {
+          font-size: 2rem;
+          line-height: 2rem;
+
+          span {
+            text-decoration: underline;
+            text-decoration-color: $primary;
+          }
+        }
+      }
+
+      .location {
+        margin-top: 1rem;
+
+        h4 {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+
+          .uppercase {
+            font-size: 1.125rem;
+          }
+
+          .underline {
+            text-decoration: underline;
+            text-decoration-color: $primary;
+          }
+
+          .weather-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            color: $primary;
+          }
+        }
+      }
+
+      .contact-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+
+        .center-content {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          .icon {
+            color: $primary;
+            width: 1.75rem;
+            height: 1.75rem;
+          }
+
+          p {
+            font-size: 1.25rem;
+          }
+        }
+      }
+
+      .form {
+        max-width: 500px;
+        min-height: 300px;
+        padding: 1rem 2rem 2rem 2rem;
+        border: solid 2px $secondary;
+        border-radius: 0.5rem;
+
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          margin-top: 0.25rem;
+
+          label {
+            margin-bottom: 0.25rem;
+          }
+
+          input {
+            padding: 0.5rem;
+            border: 3px solid $secondary;
+            border-radius: 0.25rem;
+
+            &:focus {
+              outline: none;
+            }
+          }
+
+          textarea {
+            all: unset;
+            width: 317px;
+            height: 100px;
+            background-color: white;
+            color: black;
+            padding: 0.5rem;
+            border: 3px solid $secondary;
+            border-radius: 0.25rem;
+          }
+
+          .error {
+            color: red;
+            font-size: 14px;
+            min-height: 1.25rem;
+          }
+        }
+
+        .btn-container {
+          .submit-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 13rem;
+            height: 3rem;
+            margin-top: 2rem;
+            padding: 0.5rem 1.75rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            background-color: $secondary;
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+              transition: 0.2s;
+              background-color: $primary;
+            }
+          }
+        }
+      }
+    }
+  }
+}
