@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowDownCircleIcon } from "@heroicons/react/24/solid";
 
 const About = ({ data }) => {
@@ -26,10 +27,16 @@ const About = ({ data }) => {
           ))}
         </ul>
         <div className="btn-container">
-          <button className="submit-btn" aria-label="Go to Reumé page">
+          <Link
+            href="/resume.pdf"
+            download="resume.pdf"
+            target="_blank"
+            className="submit-btn"
+            aria-label="Download my Resumé"
+          >
             Download my Resumé
             <ArrowDownCircleIcon className="arrow-icon icon" />
-          </button>
+          </Link>
         </div>
       </div>
     </div>
