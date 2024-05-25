@@ -2,11 +2,14 @@ import Image from "next/image";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";
 
 const About = ({ data }) => {
+  const aboutData = data[0];
+  const { imageUrl, aboutText } = aboutData;
+
   return (
     <div className="container">
       <h3>About</h3>
       <Image
-        src={data.imageUrl}
+        src={imageUrl}
         width={1000}
         height={1000}
         className="about-image"
@@ -18,7 +21,7 @@ const About = ({ data }) => {
           Here's a <span>little</span> background.
         </h4>
         <ul>
-          {data.aboutText.map((text, idx) => (
+          {aboutText.map((text, idx) => (
             <li key={idx}>{text}</li>
           ))}
         </ul>
