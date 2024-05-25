@@ -19,7 +19,7 @@ const About = ({ data }) => {
       />
       <div className="text-container">
         <h4>
-          Here's a <span>little</span> background.
+        Here&apos;s a <span>little</span> background.
         </h4>
         <ul>
           {aboutText.map((text, idx) => (
