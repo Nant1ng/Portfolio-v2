@@ -23,10 +23,9 @@ Live Demo: https://portfolio-v2-lovat-delta.vercel.app/
 # Future Plans
 * Make the app fully responsive.
 * Implement small design changes.
+* Make it possible to switch language ("SV-EN").
+* Light mode.
 ***
 
-# License
-Distributed under the MIT License.
-
 # Contact
-For any questions or issues, please contact via email, andressantana99@hotmail.se.
+For any questions, please contact via email, andressantana99@hotmail.se.
