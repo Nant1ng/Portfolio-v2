@@ -44,12 +44,22 @@
         display: inline-block;
 
         .skill {
-          width: 90px;
-          height: 90px;
+          width: 3.1rem;
+          height: 3.1rem;
           border-radius: 9999px;
 
           &:hover {
             transform: scale(1.1);
+          }
+
+          @include md {
+            width: 4.4rem;
+            height: 4.4rem;
+          }
+
+          @include xl {
+            width: 5.6rem;
+            height: 5.6rem;
           }
         }
 
