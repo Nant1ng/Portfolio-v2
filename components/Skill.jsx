@@ -14,7 +14,9 @@ const Skill = ({ data }) => {
               alt={skill.skillName}
               className="skill"
             />
-            <div className="hover-label">{skill.skill}</div>
+            <div className="hover-label">
+              <p>{skill.skillName}</p>
+            </div>
           </div>
         ))}
       </div>

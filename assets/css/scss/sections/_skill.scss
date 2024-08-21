@@ -35,9 +35,13 @@
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem 2rem;
       margin-top: 2rem;
+
+      @include md {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
 
       .hover-container {
         position: relative;
@@ -47,10 +51,7 @@
           width: 3.1rem;
           height: 3.1rem;
           border-radius: 9999px;
-
-          &:hover {
-            transform: scale(1.1);
-          }
+          margin-bottom: 1rem;
 
           @include md {
             width: 4.4rem;
@@ -61,12 +62,16 @@
             width: 5.6rem;
             height: 5.6rem;
           }
+
+          &:hover {
+            transform: scale(1.1);
+          }
         }
 
         .hover-label {
           visibility: hidden;
-          width: 120px;
-          background-color: black;
+          width: 7.5rem;
+          background-color: $secondary;
           color: #fff;
           text-align: center;
           border-radius: 6px;
@@ -77,12 +82,12 @@
           left: 50%;
           margin-left: -60px; /* Center the label */
           opacity: 0;
-          transition: opacity 0.3s;
+          transition: opacity 0.5s;
+        }
 
-          &:hover {
-            visibility: visible;
-            opacity: 1;
-          }
+        &:hover .hover-label {
+          visibility: visible;
+          opacity: 1;
         }
       }
     }
