@@ -49,7 +49,7 @@ const Contact = ({ data, weather }) => {
               feel free to <span>call or email me!</span>
             </h4>
           </div>
-          <Location data={weather} />
+          {/* <Location data={weather} /> */}
           <div className="contact-content">
             <div className="center-content">
               <EnvelopeIcon className="icon" />

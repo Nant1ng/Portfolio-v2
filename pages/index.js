@@ -57,9 +57,9 @@ export default function Home({
           <section id="projects" className="snap-center">
             <Project data={projectData} />
           </section>
-          <section id="reference" className="snap-center">
+          {/* <section id="reference" className="snap-center">
             <Reference />
-          </section>
+          </section> */}
           <section id="contact" className="snap-start">
             <Contact data={contactData} weather={weatherData} />
           </section>
