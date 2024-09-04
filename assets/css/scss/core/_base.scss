@@ -1,9 +1,12 @@
 .container {
-  height: 100vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  scroll-snap-type: y mandatory;
   scrollbar-color: $primary #66666620;
+
+  @include md {
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+  }
 
   &::-webkit-scrollbar-track {
     background: #66666620;
