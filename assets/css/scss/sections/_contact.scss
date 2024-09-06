@@ -1,6 +1,5 @@
 #contact {
   .container {
-    
     display: flex;
     position: relative;
     flex-direction: column;
@@ -35,8 +34,11 @@
 
       @include md {
         flex-direction: row;
-        gap: 10rem;
         margin-top: 5rem;
+      }
+
+      @include xl {
+        gap: 10rem;
       }
 
       .contact {
@@ -52,6 +54,10 @@
           width: 15rem;
 
           @include md {
+            width: 17rem;
+          }
+
+          @include xl {
             width: 32.8rem;
           }
 
@@ -158,6 +164,10 @@
             border-radius: 0.25rem;
 
             @include md {
+              width: 15rem;
+            }
+
+            @include xl {
               width: 19.8rem;
             }
           }
