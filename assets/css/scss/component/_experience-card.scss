@@ -3,25 +3,45 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50rem;
+    width: 15rem;
     padding: 1rem;
     gap: 1rem;
-    margin: 0 auto;
-    border: solid 2px $primary;
+    margin: 0 0.5rem;
+    border: none;
     border-radius: 5px;
+
+    @include md {
+      width: 50rem;
+      border: solid 2px $primary;
+    }
 
     .card-header {
       display: flex;
+      flex-direction: column-reverse;
       width: 100%;
       justify-content: space-evenly;
       align-items: center;
 
+      @include md {
+        flex-direction: row;
+      }
+
       .card-header-text {
         max-width: 23.43rem;
-        margin-left: -20px;
+        margin-left: 0px;
+        text-align: center;
+
+        @include md {
+          margin-left: -20px;
+          text-align: start;
+        }
 
         h4 {
-          font-size: 2rem;
+          font-size: 1.5rem;
+
+          @include md {
+            font-size: 2rem;
+          }
         }
 
         h5 {
@@ -38,17 +58,31 @@
     }
 
     .card-content {
-      width: 35rem;
+      width: 15rem;
+
+      @include md {
+        width: 35rem;
+      }
 
       .tags-container {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 0.5rem;
+
+        @include md {
+          align-items: flex-start;
+        }
 
         .tags {
           display: flex;
+          justify-content: center;
           gap: 0.5rem;
           flex-wrap: wrap;
+
+          @include md {
+            justify-content: flex-start;
+          }
 
           .tag {
             padding: 0.5rem 1rem;
