@@ -3,18 +3,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50rem;
+    width: 15rem;
     padding: 1rem;
     gap: 1rem;
     margin: 0 auto;
-    border: solid 2px $primary;
+    
     border-radius: 5px;
 
+    @include md {
+      width: 50rem;
+      border: solid 2px $primary;
+    }
+
     .card-header {
-      display: flex;
       width: 100%;
-      justify-content: space-evenly;
-      align-items: center;
+      display: flex;
+      justify-content: center;
 
       .card-header-text {
         display: flex;
@@ -28,8 +32,15 @@
 
         .tags-container {
           display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
           gap: 0.5rem;
           align-items: center;
+
+          @include md {
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+          }
 
           span {
             font-size: 1.25rem;
@@ -56,17 +67,25 @@
       flex-direction: column;
       align-items: center;
       gap: 1rem;
+      width: 100%;
 
       .card-image {
         border-radius: 1rem;
+        
       }
 
       .description {
         max-width: 75%;
       }
+
       .btn-container {
         display: flex;
+        flex-direction: column;
         gap: 1rem;
+
+        @include md {
+          flex-direction: row;
+        }
 
         .submit-btn {
           display: flex;
