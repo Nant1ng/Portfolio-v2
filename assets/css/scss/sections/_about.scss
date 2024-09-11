@@ -40,13 +40,13 @@
       height: 7rem;
       border-radius: 9999px;
       object-fit: cover;
-      margin-top: 5rem;
+      margin-top: 7rem;
       border: 2px solid white;
 
       @include md {
-        margin-top: 6rem;
         width: 10rem;
         height: 10rem;
+        margin-top: 10rem;
       }
 
       @include xl {
@@ -142,14 +142,11 @@
           @include md {
             position: absolute;
             right: 1.75rem;
-            top: 29.37rem;
             margin-top: 2rem;
           }
 
           @include lg {
             position: static;
-            top: none;
-            right: none;
           }
 
           &:hover {
