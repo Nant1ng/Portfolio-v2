@@ -20,9 +20,12 @@ const Contact = ({ data, weather }) => {
     const newErrors = {};
 
     if (!fullName) newErrors.fullName = "Full Name is required";
+
     if (!userEmail) newErrors.userEmail = "Email Address is required";
+
     if (!validateUserEmail(userEmail))
       newErrors.userEmail = "Must be a vaild Email Adrress";
+
     if (!message) newErrors.message = "Message is required";
 
     setErrors(newErrors);
@@ -30,11 +33,29 @@ const Contact = ({ data, weather }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validateForm() && validateUserEmail(userEmail)) {
-      console.log("Form submitted: ", { fullName, userEmail, message });
+      const formData = { fullName, userEmail, message };
+
+      try {
+        const response = await fetch("http://localhost:5000/send-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+          console.log("Email sent successfully! :)");
+        } else {
+          console.log("Failed to send email...");
+        }
+      } catch (error) {
+        console.error("Error: ", error);
+      }
     }
   };
 
