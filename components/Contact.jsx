@@ -10,6 +10,8 @@ const Contact = ({ data, weather }) => {
   const [userEmail, setUserEmail] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState("error");
 
   const validateUserEmail = (userEmail) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -39,16 +41,28 @@ const Contact = ({ data, weather }) => {
     if (validateForm() && validateUserEmail(userEmail)) {
       const formData = { fullName, userEmail, message };
 
+      setLoading(true);
       try {
-        await fetch("/api/send-mail", {
+        const response = await fetch("/api/send-mail", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
         });
+
+        if (response.ok) {
+          setSubmitStatus("success");
+          setFullName("");
+          setUserEmail("");
+          setMessage("");
+        } else {
+          setSubmitStatus("error");
+        }
       } catch (error) {
-        console.error("Error: ", error);
+        setSubmitStatus("error");
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -110,9 +124,23 @@ const Contact = ({ data, weather }) => {
               />
               <p className="error">{errors.message ? errors.message : ""}</p>
             </div>
+            {submitStatus === "success" && (
+              <p className="success">Message sent successfully!</p>
+            )}
+            {submitStatus === "error" && (
+              <p className="error">
+                Failed to send the message. Please try again later.
+              </p>
+            )}
             <div className="btn-container">
               <button type="submit" className="submit-btn">
-                Send Message
+                {loading
+                  ? "Sending..."
+                  : submitStatus === "success"
+                  ? "Success"
+                  : submitStatus === "error"
+                  ? "Unsuccessful"
+                  : "Send Message"}
               </button>
             </div>
           </form>
