@@ -11,7 +11,7 @@ const Contact = ({ data, weather }) => {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState("error");
+  const [submitStatus, setSubmitStatus] = useState("");
 
   const validateUserEmail = (userEmail) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
