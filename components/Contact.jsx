@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PhoneIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import Location from "./contact/Location";
 
@@ -10,6 +10,36 @@ const Contact = ({ data, weather }) => {
   const [userEmail, setUserEmail] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState("");
+  const [cooldown, setCooldown] = useState(0);
+
+  const SUBMISSION_LIMIT = 3;
+  const COOLDOWN_PERIOD = 300;
+
+  useEffect(() => {
+    const savedCooldown = localStorage.getItem("timeout");
+    const savedSpamCount = localStorage.getItem("spamCount");
+
+    if (savedCooldown && savedSpamCount) {
+      const remainingTime = Math.floor((savedCooldown - Date.now()) / 1000);
+
+      if (remainingTime > 0) {
+        setCooldown(remainingTime);
+      } else {
+        localStorage.removeItem("timeout");
+        localStorage.removeItem("spamCount", 0);
+      }
+    }
+  });
+
+  useEffect(() => {
+    if (cooldown > 0) {
+      const timer = setTimeout(() => setCooldown(cooldown - 1), 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [cooldown]);
 
   const validateUserEmail = (userEmail) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -35,20 +65,50 @@ const Contact = ({ data, weather }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitStatus("");
 
     if (validateForm() && validateUserEmail(userEmail)) {
       const formData = { fullName, userEmail, message };
+      const spamCount = parseInt(localStorage.getItem("spamCount") || 0, 10);
+      const savedCooldown = localStorage.getItem("timeout");
 
+      if (savedCooldown && savedCooldown > Date.now()) {
+        setSubmitStatus("submitTimeout");
+        return;
+      }
+
+      if (spamCount >= SUBMISSION_LIMIT) {
+        setSubmitStatus("submitTimeout");
+        const cooldownExpiry = Date.now() + COOLDOWN_PERIOD * 1000;
+        localStorage.setItem("timeout", cooldownExpiry);
+        setCooldown(COOLDOWN_PERIOD);
+        return;
+      }
+
+      setLoading(true);
       try {
-        await fetch("/api/send-mail", {
+        const response = await fetch("/api/send-mail", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
         });
+
+        if (response.ok) {
+          setSubmitStatus("success");
+          setFullName("");
+          setUserEmail("");
+          setMessage("");
+
+          localStorage.setItem("spamCount", spamCount + 1);
+        } else {
+          setSubmitStatus("error");
+        }
       } catch (error) {
-        console.error("Error: ", error);
+        setSubmitStatus("error");
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -110,9 +170,27 @@ const Contact = ({ data, weather }) => {
               />
               <p className="error">{errors.message ? errors.message : ""}</p>
             </div>
+            {submitStatus === "success" && (
+              <p className="success">Message sent successfully!</p>
+            )}
+            {submitStatus === "error" && (
+              <p className="error">
+                Failed to send the message. Please try again later.
+              </p>
+            )}
             <div className="btn-container">
-              <button type="submit" className="submit-btn">
-                Send Message
+              <button
+                type="submit"
+                className={`submit-btn ${
+                  loading || cooldown > 0 ? "disable" : ""
+                }`}
+                disabled={loading || cooldown > 0}
+              >
+                {loading
+                  ? "Sending..."
+                  : submitStatus === "submitTimeout"
+                  ? `Timeout ${cooldown}s`
+                  : "Send Message"}
               </button>
             </div>
           </form>
