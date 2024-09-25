@@ -15,11 +15,23 @@ const Contact = ({ data, weather }) => {
   const [cooldown, setCooldown] = useState(0);
 
   const SUBMISSION_LIMIT = 3;
-  const COOLDOWN_PERIOD = 300;
+  const COOLDOWN_PERIOD_MS = 300000;
+  const TIMEOUT_RESET_PERIOD_MS = 600000;
 
   useEffect(() => {
-    const savedCooldown = localStorage.getItem("timeout");
-    const savedSpamCount = localStorage.getItem("spamCount");
+    const savedCooldown = localStorage.getItem("cooldownExpiry");
+    const savedSpamCount = parseInt(localStorage.getItem("spamCount") || 0, 10);
+    const firstSubmitTime = localStorage.getItem("firstSubmitTime");
+
+    if (firstSubmitTime && savedSpamCount > 0) {
+      const timeElapsed = Date.now() - firstSubmitTime;
+
+      if (timeElapsed > TIMEOUT_RESET_PERIOD_MS) {
+        localStorage.removeItem("spamCount");
+        localStorage.removeItem("cooldownExpiry");
+        localStorage.removeItem("firstSubmitTime");
+      }
+    }
 
     if (savedCooldown && savedSpamCount) {
       const remainingTime = Math.floor((savedCooldown - Date.now()) / 1000);
@@ -27,11 +39,11 @@ const Contact = ({ data, weather }) => {
       if (remainingTime > 0) {
         setCooldown(remainingTime);
       } else {
-        localStorage.removeItem("timeout");
-        localStorage.removeItem("spamCount", 0);
+        localStorage.removeItem("cooldownExpiry");
+        localStorage.removeItem("spamCount");
       }
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (cooldown > 0) {
@@ -54,7 +66,7 @@ const Contact = ({ data, weather }) => {
     if (!userEmail) newErrors.userEmail = "Email Address is required";
 
     if (!validateUserEmail(userEmail))
-      newErrors.userEmail = "Must be a vaild Email Adrress";
+      newErrors.userEmail = "Must be a valid Email Address";
 
     if (!message) newErrors.message = "Message is required";
 
@@ -67,25 +79,29 @@ const Contact = ({ data, weather }) => {
     e.preventDefault();
     setSubmitStatus("");
 
+    const spamCount = parseInt(localStorage.getItem("spamCount") || 0, 10);
+    const savedCooldown = localStorage.getItem("cooldownExpiry");
+
+    if (savedCooldown && savedCooldown > Date.now()) {
+      setSubmitStatus("submitTimeout");
+      return;
+    }
+
     if (validateForm() && validateUserEmail(userEmail)) {
       const formData = { fullName, userEmail, message };
-      const spamCount = parseInt(localStorage.getItem("spamCount") || 0, 10);
-      const savedCooldown = localStorage.getItem("timeout");
-
-      if (savedCooldown && savedCooldown > Date.now()) {
-        setSubmitStatus("submitTimeout");
-        return;
-      }
 
       if (spamCount >= SUBMISSION_LIMIT) {
         setSubmitStatus("submitTimeout");
-        const cooldownExpiry = Date.now() + COOLDOWN_PERIOD * 1000;
-        localStorage.setItem("timeout", cooldownExpiry);
-        setCooldown(COOLDOWN_PERIOD);
+        const cooldownExpiry = Date.now() + COOLDOWN_PERIOD_MS;
+        localStorage.setItem("cooldownExpiry", cooldownExpiry);
+        setCooldown(COOLDOWN_PERIOD_MS / 1000);
         return;
       }
 
+      if (spamCount === 0) localStorage.setItem("firstSubmitTime", Date.now());
+
       setLoading(true);
+
       try {
         const response = await fetch("/api/send-mail", {
           method: "POST",
@@ -100,7 +116,6 @@ const Contact = ({ data, weather }) => {
           setFullName("");
           setUserEmail("");
           setMessage("");
-
           localStorage.setItem("spamCount", spamCount + 1);
         } else {
           setSubmitStatus("error");
@@ -124,7 +139,6 @@ const Contact = ({ data, weather }) => {
               feel free to <span>call or email me!</span>
             </h4>
           </div>
-          {/* <Location data={weather} /> */}
           <div className="contact-content">
             <div className="center-content">
               <EnvelopeIcon className="icon" />
@@ -178,12 +192,13 @@ const Contact = ({ data, weather }) => {
                 Failed to send the message. Please try again later.
               </p>
             )}
+            {submitStatus === "submitTimeout" && (
+              <p className="error">You are in timeout. Please wait.</p>
+            )}
             <div className="btn-container">
               <button
                 type="submit"
-                className={`submit-btn ${
-                  loading || cooldown > 0 ? "disable" : ""
-                }`}
+                className="submit-btn"
                 disabled={loading || cooldown > 0}
               >
                 {loading
