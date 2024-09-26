@@ -20,28 +20,34 @@ const ProjectCard = ({ projectData }) => {
         </div>
       </div>
       <div className="card-content">
-        <Link href={link} target="_blank">
-          <Image
-            src={imageUrl}
-            width={300}
-            height={150}
-            alt={title}
-            className="card-image"
-            priority
-          />
-        </Link>
+        {imageUrl ? (
+          <Link href={link} target="_blank">
+            <Image
+              src={imageUrl}
+              width={300}
+              height={150}
+              alt={title}
+              className="card-image"
+              priority
+            />
+          </Link>
+        ) : null}
         <p className="description">{description}</p>
         <div className="btn-container">
-          <Link href={github} target="_blank">
-            <button type="submit" className="submit-btn">
-              Go to Github
-            </button>
-          </Link>
-          <Link href={link} target="_blank">
-            <button type="submit" className="submit-btn">
-              Go to Project
-            </button>
-          </Link>
+          {github ? (
+            <Link href={github} target="_blank">
+              <button type="submit" className="submit-btn">
+                Go to Github
+              </button>
+            </Link>
+          ) : null}
+          {link ? (
+            <Link href={link} target="_blank">
+              <button type="submit" className="submit-btn">
+                Go to Project
+              </button>
+            </Link>
+          ) : null}
         </div>
       </div>
     </article>
