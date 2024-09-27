@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const { fullName, userEmail, message } = req.body;
 
     const transporter = nodemailer.createTransport({
-      service: "hotmail",
+      service: "gmail",
       auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD,
