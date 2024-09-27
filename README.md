@@ -21,8 +21,8 @@ Live Demo: https://portfolio-v2-lovat-delta.vercel.app/
 ***
 
 # Future Plans
-* Make the app fully responsive.
-* Implement small design changes.
+* ~~Make the app fully responsive.~~
+* ~~Implement small design changes.~~
 * Make it possible to switch language ("SV-EN").
 * Light mode.
 ***
