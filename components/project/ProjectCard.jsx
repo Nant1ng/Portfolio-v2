@@ -20,7 +20,7 @@ const ProjectCard = ({ projectData }) => {
         </div>
       </div>
       <div className="card-content">
-        {imageUrl ? (
+        {link ? (
           <Link href={link} target="_blank">
             <Image
               src={imageUrl}
@@ -31,6 +31,15 @@ const ProjectCard = ({ projectData }) => {
               priority
             />
           </Link>
+        ) : imageUrl ? (
+          <Image
+            src={imageUrl}
+            width={300}
+            height={150}
+            alt={title}
+            className="card-image"
+            priority
+          />
         ) : null}
         <p className="description">{description}</p>
         <div className="btn-container">
